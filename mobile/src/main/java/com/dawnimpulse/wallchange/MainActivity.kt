@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         callIt()
     }
 
-    public fun callIt() {
+    fun callIt() {
         Toast.makeText(this, "Wallpaper is Changing", Toast.LENGTH_SHORT).show()
         startService(Intent(this, ChangeWallpaper::class.java))
         finish()

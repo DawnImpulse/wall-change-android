@@ -27,7 +27,7 @@ class ChangeWallpaper : IntentService, RequestResponse {
     override fun onHandleIntent(intent: Intent) {
         this.intent = intent
         volley = VolleyWrapper(this)
-        volley.getCall("https://api.unsplash.com/photos/random?client_id=a25247a07df2c569f6f3dc129f43b0eb3b0e3ff69b00d5b84dd031255e55b961", 2)
+        volley.getCall("https://api.unsplash.com/photos/random?featured=true&client_id=a25247a07df2c569f6f3dc129f43b0eb3b0e3ff69b00d5b84dd031255e55b961", 2)
         volley.setListener(this)
     }
 
