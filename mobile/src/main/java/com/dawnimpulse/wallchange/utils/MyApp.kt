@@ -1,7 +1,6 @@
 package com.dawnimpulse.wallchange.utils
 
 import android.app.Application
-import shortbread.Shortbread
 
 
 /**
@@ -13,7 +12,5 @@ import shortbread.Shortbread
 class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
-
-        Shortbread.create(this)
     }
 }

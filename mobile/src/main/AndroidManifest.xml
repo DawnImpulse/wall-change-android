@@ -3,6 +3,7 @@
     package="com.dawnimpulse.wallchange">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <application
         android:name=".utils.MyApp"
