@@ -11,11 +11,12 @@ import android.view.Display
 import android.view.WindowManager
 import com.android.volley.VolleyError
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.animation.GlideAnimation
 import com.bumptech.glide.request.target.SimpleTarget
 import com.dawnimpulse.wallchange.network.RequestResponse
 import com.dawnimpulse.wallchange.network.VolleyWrapper
+import com.dawnimpulse.wallchange.utils.C
+import com.pixplicity.easyprefs.library.Prefs
 import org.json.JSONObject
 
 /**
@@ -49,27 +50,27 @@ class ChangeWallpaper : IntentService, RequestResponse {
     override fun onResponse(response: JSONObject, callback: Int) {
         if (callback == 2) {
             val urls = response.getJSONObject("urls")
+            val links = response.getJSONObject("links");
             /*val params = HashMap<String, String>()
             params.put("value1", urls.getString("raw") + "?h=1080")*/
 
             Glide.with(this)
                     .load(urls.getString("raw") + "?h=1080")
                     .asBitmap()
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
                     .into(object : SimpleTarget<Bitmap>() {
                         override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap>?) {
                             if (resource != null) {
-
-                            }
-                            val wallpaperManager = WallpaperManager.getInstance(this@ChangeWallpaper)
-                            wallpaperManager.setBitmap(bitmapCropper(resource!!))
+                                val wallpaperManager = WallpaperManager.getInstance(this@ChangeWallpaper)
+                                wallpaperManager.setBitmap(bitmapCropper(resource!!))
+                                Prefs.putString(C.CURRENT, urls.getString("raw") + "?h=1080");
+                                Prefs.putString(C.ID, links.getString("html") + C.UTM_PARAMETERS);
+                                stopService(intent)
+                            } else
+                                stopService(intent)
                         }
                     })
-            //volley.postCall("https://maker.ifttt.com/trigger/wall-change/with/key/P-QrqAhCo3hGCPUYvcb3i", params, 1)
-        } else {
+        } else
             stopService(intent)
-        }
     }
 
     /**

@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Wall Change</string>
+    <string name="app_name">Wall Change</string>\
+    <string name="long_shortcut">Change Wallpaper</string>
+    <string name="short_shortcut">Change</string>
 </resources>

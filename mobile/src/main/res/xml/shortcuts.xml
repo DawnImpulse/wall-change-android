@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:shortcutId="static"
+        android:icon="@drawable/refresh"
+        android:shortcutDisabledMessage="@string/long_shortcut"
+        android:shortcutLongLabel="@string/long_shortcut"
+        android:shortcutShortLabel="@string/short_shortcut">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.dawnimpulse.wallchange.RefreshActivity"
+            android:targetPackage="com.dawnimpulse.wallchange" />
+    </shortcut>
+    <!-- Specify more shortcuts here. -->
+</shortcuts>
