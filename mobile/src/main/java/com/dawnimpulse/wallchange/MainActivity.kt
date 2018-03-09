@@ -9,10 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.Display
-import android.view.Menu
-import android.view.MenuItem
-import android.view.WindowManager
+import android.view.*
 import android.widget.Toast
 import com.android.volley.VolleyError
 import com.bumptech.glide.Glide
@@ -30,7 +27,9 @@ import org.json.JSONObject
  */
 class MainActivity : AppCompatActivity(), RequestResponse {
 
-    lateinit var volley: VolleyWrapper
+    private lateinit var volley: VolleyWrapper
+    private lateinit var view: View
+    private lateinit var toast:Toast
 
     /**
      * On create
@@ -38,6 +37,10 @@ class MainActivity : AppCompatActivity(), RequestResponse {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        view = layoutInflater.inflate(R.layout.custom_toast, findViewById<ViewGroup>(R.id.customToastLayout))
+        toast = Toast(this);
+        toast.duration = Toast.LENGTH_SHORT
+        toast.view = view
 
         if (Prefs.contains(C.CURRENT)) {
             val url = Prefs.getString(C.CURRENT, "");
@@ -45,13 +48,13 @@ class MainActivity : AppCompatActivity(), RequestResponse {
                     .load(url)
                     .into(image);
         } else {
-            Toast.makeText(this, "Changing Wallpaper", Toast.LENGTH_SHORT).show();reload();
-            reload();
+            toast.show()
+            reload()
         }
 
         fab.setOnClickListener {
-            Toast.makeText(this, "Changing Wallpaper", Toast.LENGTH_SHORT).show();
-            reload();
+            toast.show()
+            reload()
         }
 
     }
