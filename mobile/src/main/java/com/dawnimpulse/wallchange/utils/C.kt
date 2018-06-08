@@ -10,4 +10,5 @@ object C {
     const val CURRENT = "current"
     const val ID = "id"
     const val UTM_PARAMETERS = "?utm_source=wallup&utm_medium=referral&utm_campaign=api-credit"
+    const val UNSPLASH_API_KEY = "unsplash_api_key"
 }

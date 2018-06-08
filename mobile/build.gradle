@@ -22,13 +22,17 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.volley:volley:1.0.0'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.pixplicity.easyprefs:library:1.9.0'
+    implementation 'com.google.firebase:firebase-core:16.0.0'
     //------------------------------------------------------------------------
-    wearApp project(':wear')
-    implementation 'com.google.android.gms:play-services-wearable:+'
+    implementation 'com.google.firebase:firebase-config:16.0.0'
+    //wearApp project(':wear')
+    //implementation 'com.google.android.gms:play-services-wearable:+'
 }
+
+apply plugin: 'com.google.gms.google-services'

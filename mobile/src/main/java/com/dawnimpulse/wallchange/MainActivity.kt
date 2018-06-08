@@ -18,6 +18,7 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.dawnimpulse.wallchange.network.RequestResponse
 import com.dawnimpulse.wallchange.network.VolleyWrapper
 import com.dawnimpulse.wallchange.utils.C
+import com.dawnimpulse.wallchange.utils.Config
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity(), RequestResponse {
 
     private lateinit var volley: VolleyWrapper
     private lateinit var view: View
-    private lateinit var toast:Toast
+    private lateinit var toast: Toast
 
     /**
      * On create
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity(), RequestResponse {
      */
     private fun reload() {
         volley = VolleyWrapper(this)
-        volley.getCall("https://api.unsplash.com/photos/random?featured&client_id=a25247a07df2c569f6f3dc129f43b0eb3b0e3ff69b00d5b84dd031255e55b961",
+        volley.getCall("https://api.unsplash.com/photos/random?featured&client_id=${Config.UNSPLASH_API_KEY}",
                 1)
         volley.setListener(this)
     }
