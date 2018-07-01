@@ -26,8 +26,7 @@ import org.json.JSONObject
 /**
  * Created by DawnImpulse
  */
-class MainActivity : AppCompatActivity(), RequestResponse {
-
+class MainActivity : AppCompatActivity(), RequestResponse,View.OnClickListener {
     private lateinit var volley: VolleyWrapper
     private lateinit var view: View
     private lateinit var toast: Toast
@@ -57,6 +56,7 @@ class MainActivity : AppCompatActivity(), RequestResponse {
             toast.show()
             reload()
         }
+        unsplash.setOnClickListener(this)
 
     }
 
@@ -108,6 +108,20 @@ class MainActivity : AppCompatActivity(), RequestResponse {
                                 Toast.makeText(this@MainActivity, "Empty Resource", Toast.LENGTH_SHORT).show()
                         }
                     })
+        }
+    }
+
+    /**
+     * On click of unsplash button
+     */
+    override fun onClick(v: View?) {
+        if (Prefs.contains(C.ID)) {
+            val url = Prefs.getString(C.ID, "https://unsplash.com");
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+        } else {
+            Toast.makeText(this, "No image available", Toast.LENGTH_SHORT);
         }
     }
 
